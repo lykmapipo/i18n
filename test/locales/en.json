@@ -1,0 +1,14 @@
+{
+  "hello": "Hello",
+  "greeting": "Hello {{name}}",
+  "gender":
+  {
+    "male": "Male",
+    "female": "Female"
+  },
+  "You have %s message":
+  {
+    "one": "You have %s message",
+    "other": "You have %s messages"
+  }
+}
