@@ -15,8 +15,7 @@
     "locale",
     "language",
     "template",
-    "i18n",
-    "l10n"
+    "i18n"
   ],
   "contributors": [
     {
