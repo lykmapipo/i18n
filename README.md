@@ -16,7 +16,7 @@
 ## Installation
 
 ```sh
-npm install --save lodash @lykmapipo/env @lykmapipo/i18n
+npm install --save @lykmapipo/i18n
 ```
 
 ## Usage
