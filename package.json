@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "lodash": ">=4.17.11",
-    "@lykmapipo/env": ">=0.7.4",
+    "@lykmapipo/env": ">=0.7.6",
     "i18n": ">=0.8.3"
   },
   "engines": {
