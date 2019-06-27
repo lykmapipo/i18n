@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "lodash": ">=4.17.11",
-    "@lykmapipo/env": ">=0.9.1",
+    "@lykmapipo/env": ">=0.9.4",
     "i18n": ">=0.8.3"
   },
   "engines": {
