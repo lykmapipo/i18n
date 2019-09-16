@@ -36,14 +36,14 @@
     "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-mocha-test": "^0.13.3",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.2.0",
     "jshint-stylish": "^2.2.1",
     "mocha": "^6.2.0",
     "shelljs": "^0.8.3"
   },
   "dependencies": {
     "lodash": ">=4.17.15",
-    "@lykmapipo/env": ">=0.12.2",
+    "@lykmapipo/env": ">=0.13.2",
     "i18n": ">=0.8.3"
   },
   "engines": {
