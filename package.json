@@ -1,6 +1,6 @@
 {
   "name": "@lykmapipo/i18n",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "i18n helpers",
   "main": "index.js",
   "scripts": {
