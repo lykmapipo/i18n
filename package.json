@@ -38,12 +38,12 @@
     "grunt-mocha-test": "^0.13.3",
     "handlebars": "^4.7.3",
     "jshint-stylish": "^2.2.1",
-    "mocha": "^7.0.1",
+    "mocha": "^7.1.0",
     "shelljs": "^0.8.3"
   },
   "dependencies": {
     "lodash": ">=4.17.15",
-    "@lykmapipo/env": ">=0.16.7",
+    "@lykmapipo/env": ">=0.16.8",
     "i18n": ">=0.8.5"
   },
   "engines": {
