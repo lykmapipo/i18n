@@ -243,6 +243,21 @@ describe('i18n', () => {
     expect(locales).to.exist.and.be.an('object');
   });
 
+  it('should use static catalog', () => {
+    const i18n = configure({
+      reset: true,
+      staticCatalog: {
+        en: { salute: 'Hello' },
+        sw: { salute: 'Mambo' },
+      },
+    });
+
+    expect(i18n.t('salute')).to.exist.and.be.equal('Hello');
+    expect(i18n.t({ phrase: 'salute', locale: 'sw' })).to.exist.and.be.equal(
+      'Mambo'
+    );
+  });
+
   after(() => {
     process.env.BASE_PATH = BASE_PATH;
     process.env.I18N_LOCALES = I18N_LOCALES;
