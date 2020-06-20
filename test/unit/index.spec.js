@@ -1,4 +1,5 @@
 import { expect } from '@lykmapipo/test-helpers';
+import { stringify } from '@lykmapipo/common';
 
 import {
   withEnv,
@@ -243,7 +244,30 @@ describe('i18n', () => {
     expect(locales).to.exist.and.be.an('object');
   });
 
-  it('should use static catalog', () => {
+  // static catalog
+
+  it('should use environment static catalog', () => {
+    process.env.I18N_STATIC_CATALOG = stringify({
+      en: { salute: 'Hello' },
+      sw: { salute: 'Mambo' },
+    });
+
+    const i18n = configure({
+      reset: true,
+    });
+
+    expect(i18n.t('salute')).to.exist.and.be.equal('Hello');
+    expect(t('salute')).to.exist.and.be.equal('Hello');
+
+    expect(i18n.t({ phrase: 'salute', locale: 'sw' })).to.exist.and.be.equal(
+      'Mambo'
+    );
+    expect(t('salute', 'sw')).to.exist.and.be.equal('Mambo');
+
+    delete process.env.I18N_STATIC_CATALOG;
+  });
+
+  it('should use provide static catalog', () => {
     const i18n = configure({
       reset: true,
       staticCatalog: {
@@ -253,9 +277,12 @@ describe('i18n', () => {
     });
 
     expect(i18n.t('salute')).to.exist.and.be.equal('Hello');
+    expect(t('salute')).to.exist.and.be.equal('Hello');
+
     expect(i18n.t({ phrase: 'salute', locale: 'sw' })).to.exist.and.be.equal(
       'Mambo'
     );
+    expect(t('salute', 'sw')).to.exist.and.be.equal('Mambo');
   });
 
   after(() => {
