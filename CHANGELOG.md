@@ -1,3 +1,36 @@
+#### 0.2.0 (2020-06-20)
+
+##### Documentation Changes
+
+* **readme:**
+  *  set requirement versions ([97a8d007](https://github.com/lykmapipo/i18n/commit/97a8d007af412bbb8f7be08bfc95183d339e041c))
+  *  improve usage guide ([2161b761](https://github.com/lykmapipo/i18n/commit/2161b761a7af2cd0533031b3191e553fd9e68bc7))
+
+##### New Features
+
+*  use static catalog on configure ([e6679aa2](https://github.com/lykmapipo/i18n/commit/e6679aa20b79f6484e1f3b56d0d39aba78a74349))
+*  support load static locales catalog ([0a5c5e16](https://github.com/lykmapipo/i18n/commit/0a5c5e165e3275183e746986a5e4ee104cb6e5de))
+*  expose get catalogue ([81633b1b](https://github.com/lykmapipo/i18n/commit/81633b1be5afafd25627af9c364e8053703d7e37))
+*  add reset ([493c98db](https://github.com/lykmapipo/i18n/commit/493c98dbd244054b0a3715c58df73abfaf08bc77))
+*  add configure factory ([c755ac95](https://github.com/lykmapipo/i18n/commit/c755ac95ac367c2a1f526ca3951eba7ca5000f75))
+
+##### Refactors
+
+*  re-implement translate & pluralize helpers ([6674d65e](https://github.com/lykmapipo/i18n/commit/6674d65ec559137c93f863fd1ee25a7a1220fde3))
+*  rename i18n apis ([704e9460](https://github.com/lykmapipo/i18n/commit/704e94600e86d376f56dbe249039f49c9ffda433))
+*  initiate migration to es6 ([caea5d02](https://github.com/lykmapipo/i18n/commit/caea5d0241659c03575696e26b957eb885a90bd6))
+
+##### Code Style Changes
+
+*  improve jsdoc ([c0d53433](https://github.com/lykmapipo/i18n/commit/c0d53433b67cdfbb40b41dd28a65229802d6bf9a))
+*  improve jsdocs ([94e32df1](https://github.com/lykmapipo/i18n/commit/94e32df154be1d046229d8a45978c39d3c0b285a))
+
+##### Tests
+
+*  improve static catalog specs ([9feaff55](https://github.com/lykmapipo/i18n/commit/9feaff550448946de11e345f5ec23249a9eb1b3d))
+*  improve configure specs ([26349a28](https://github.com/lykmapipo/i18n/commit/26349a28c56db7b7be93e9dd9dbe811d45b9f80f))
+*  improve options assertions ([7c9f7816](https://github.com/lykmapipo/i18n/commit/7c9f7816c9a40ff63a4863f086b0935c59352376))
+
 #### 0.1.35 (2020-06-16)
 
 ##### Chores

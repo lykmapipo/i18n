@@ -2,6 +2,7 @@ import { keys } from 'lodash';
 import pkg from './package.json';
 
 const imports = [
+  'path',
   'lodash/clone',
   'lodash/get',
   'lodash/filter',
