@@ -5,7 +5,7 @@ import { withEnv, withDefaults, configure, reset } from '../../src';
 describe('i18n', () => {
   const { BASE_PATH } = process.env;
 
-  beforeEach(() => {
+  before(() => {
     process.env.BASE_PATH = `${__dirname}'/../fixtures`;
   });
 
@@ -51,11 +51,39 @@ describe('i18n', () => {
     expect(configure).to.have.length(1);
   });
 
+  it('should configure with defaults', () => {
+    const i18n = configure();
+    expect(i18n.t).to.exist.and.be.a('function');
+    expect(i18n.n).to.exist.and.be.a('function');
+    expect(i18n.l).to.exist.and.be.a('function');
+    expect(i18n.h).to.exist.and.be.a('function');
+    expect(i18n.mf).to.exist.and.be.a('function');
+  });
+
+  it('should ignore configure once initialize', () => {
+    const i18n = configure();
+    expect(i18n.t).to.exist.and.be.a('function');
+    expect(i18n.n).to.exist.and.be.a('function');
+    expect(i18n.l).to.exist.and.be.a('function');
+    expect(i18n.h).to.exist.and.be.a('function');
+    expect(i18n.mf).to.exist.and.be.a('function');
+  });
+
+  it('should re-configure with defaults', () => {
+    const i18n = configure({ reset: true });
+    expect(i18n.t).to.exist.and.be.a('function');
+    expect(i18n.n).to.exist.and.be.a('function');
+    expect(i18n.l).to.exist.and.be.a('function');
+    expect(i18n.h).to.exist.and.be.a('function');
+    expect(i18n.mf).to.exist.and.be.a('function');
+  });
+
   it('should reset internals', () => {
     expect(reset).to.exist;
     expect(reset).to.be.a('function');
     expect(reset.name).to.be.equal('reset');
     expect(reset).to.have.length(0);
+    expect(reset()).to.be.empty;
   });
 
   after(() => {
