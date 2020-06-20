@@ -1,6 +1,6 @@
 import { expect } from '@lykmapipo/test-helpers';
 
-import { withEnv, withDefaults } from '../../src';
+import { withEnv, withDefaults, configure } from '../../src';
 
 describe('i18n', () => {
   const { BASE_PATH } = process.env;
@@ -42,6 +42,13 @@ describe('i18n', () => {
     expect(options.queryParameter).to.exist;
     expect(options.directory).to.exist;
     expect(options.objectNotation).to.exist;
+  });
+
+  it('should expose configure factory', () => {
+    expect(configure).to.exist;
+    expect(configure).to.be.a('function');
+    expect(configure.name).to.be.equal('configure');
+    expect(configure).to.have.length(1);
   });
 
   after(() => {

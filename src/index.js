@@ -1,11 +1,15 @@
 import path from 'path';
+import get from 'lodash/get';
+import isFunction from 'lodash/isFunction';
 import { firstValue, mergeObjects, sortedUniq } from '@lykmapipo/common';
 import { getString, getStringSet } from '@lykmapipo/env';
+import I18N from 'i18n';
 
-/* setup */
-// let _i18n = {}; // local scoped i18n register
+// local scoped i18n register
+const i18n = {};
 
-// TODO: ignore support of directory and use staticCatalogue(loadLocales)
+// TODO: grab staticCatalog from env(I18N_STATIC_CATALOGUE),
+// and merge with provided
 
 /**
  * @function withEnv
@@ -67,6 +71,8 @@ export const withEnv = () => {
     true // fallback
   );
 
+  // TODO: staticCatalog
+
   // return
   return { locales, defaultLocale, queryParameter, directory, objectNotation };
 };
@@ -111,6 +117,48 @@ export const withDefaults = (optns = {}) => {
   queryParameter = firstValue(optns.queryParameter, queryParameter);
   objectNotation = firstValue(optns.objectNotation, objectNotation);
 
+  // TODO: staticCatalog
+
   // return options
   return { locales, defaultLocale, queryParameter, directory, objectNotation };
+};
+
+/**
+ * @name configure
+ * @function configure
+ * @description i18n factory
+ * @param {object} [optns] valid i18n options
+ * @param {boolean} [optns.reset] reset i18n
+ * @returns {object} i18n helpers
+ * @see {@link https://github.com/mashpie/i18n-node#i18nconfigure}
+ * @author lally elias <lallyelias87@gmail.com>
+ * @since  0.1.0
+ * @version 0.1.0
+ * @license MIT
+ * @public
+ * @example
+ *
+ * import { configure } from '@lykmapipo/i18n';
+ *
+ * const i18n = configure({ ... });
+ *
+ * i18n.__('hello'); // Hello
+ * i18n.__('hello', 'sw'); // Mambo
+ */
+export const configure = (optns) => {
+  // merge options
+  const options = withDefaults(optns);
+
+  // TODO: staticCatalog
+
+  // configure node i18n
+  const isInitialized = isFunction(get(i18n, '__'));
+  const shouldReset = options.reset;
+  if (!isInitialized || shouldReset) {
+    options.register = i18n;
+    I18N.configure({ ...options, register: i18n });
+  }
+
+  // export configured
+  return i18n;
 };

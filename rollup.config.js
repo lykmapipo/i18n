@@ -1,7 +1,13 @@
 import { keys } from 'lodash';
 import pkg from './package.json';
 
-const imports = ['lodash/filter', 'lodash/first', 'lodash/isEmpty'];
+const imports = [
+  'lodash/get',
+  'lodash/filter',
+  'lodash/first',
+  'lodash/isEmpty',
+  'lodash/isFunction',
+];
 
 export default [
   {
