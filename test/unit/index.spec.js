@@ -1,12 +1,23 @@
 import { expect } from '@lykmapipo/test-helpers';
 
-import { withEnv, withDefaults, configure, reset, t, h, l, n } from '../../src';
+import {
+  withEnv,
+  withDefaults,
+  configure,
+  reset,
+  t,
+  h,
+  l,
+  n,
+  catalog,
+} from '../../src';
 
 describe('i18n', () => {
-  const { BASE_PATH } = process.env;
+  const { BASE_PATH, I18N_LOCALES } = process.env;
 
-  before(() => {
+  beforeEach(() => {
     process.env.BASE_PATH = `${__dirname}'/../fixtures`;
+    process.env.I18N_LOCALES = 'en,sw';
   });
 
   it('should use env variables options', () => {
@@ -86,131 +97,154 @@ describe('i18n', () => {
     expect(reset()).to.be.empty;
   });
 
-  describe('', () => {
-    // translation
+  // translation
 
-    it('should translate', () => {
-      expect(t).to.exist;
-      expect(t).to.be.a('function');
-      expect(t.name).to.be.equal('t');
-      expect(t).to.have.length(3);
-    });
-
-    it('should translate(string) using default locale', () => {
-      const translated = t('hello');
-      expect(translated).to.exist;
-      expect(translated).to.be.equal('Hello');
-    });
-
-    it('should translate(object) using default locale', () => {
-      const translated = t('gender');
-      expect(translated).to.exist;
-
-      expect(translated.male).to.exist;
-      expect(translated.male).to.equal('Male');
-      expect(translated.male).to.be.equal(t('gender.male'));
-
-      expect(translated.female).to.exist;
-      expect(translated.female).to.be.equal('Female');
-      expect(translated.female).to.be.equal(t('gender.female'));
-    });
-
-    it('should translate(string) using provided locale', () => {
-      const translated = t('hello', 'sw');
-      expect(translated).to.exist;
-      expect(translated).to.be.equal('Mambo');
-    });
-
-    it('should translate(object) using provided locale', () => {
-      const translated = t('gender', 'sw');
-      expect(translated).to.exist;
-
-      expect(translated.male).to.exist;
-      expect(translated.male).to.equal('Mme');
-      expect(translated.male).to.be.equal(t('gender.male', 'sw'));
-
-      expect(translated.female).to.exist;
-      expect(translated.female).to.be.equal('Mke');
-      expect(translated.female).to.be.equal(t('gender.female', 'sw'));
-    });
-
-    it('should parse and translate(string) using default locale', () => {
-      const translated = t('greeting', { name: 'John' });
-      expect(translated).to.exist;
-      expect(translated).to.be.equal('Hello John');
-    });
-
-    it('should parse and translate(string) using provided locale', () => {
-      const translated = t('greeting', 'sw', { name: 'John' });
-      expect(translated).to.exist;
-      expect(translated).to.be.equal('Mambo John');
-    });
-
-    it('should obtain phrase translations list', () => {
-      const translations = l('hello');
-      expect(translations).to.exist;
-      expect(translations).to.be.an('array');
-      expect(translations).to.have.length(2);
-      expect(translations).to.be.eql(['Hello', 'Mambo']);
-    });
-
-    it('should obtain phrase translations hash', () => {
-      const translations = h('hello');
-      expect(translations).to.exist;
-      expect(translations).to.be.an('array');
-      expect(translations).to.have.length(2);
-      expect(translations).to.be.eql([{ en: 'Hello' }, { sw: 'Mambo' }]);
-    });
+  it('should translate', () => {
+    expect(t).to.exist;
+    expect(t).to.be.a('function');
+    expect(t.name).to.be.equal('t');
+    expect(t).to.have.length(3);
   });
 
-  describe('', () => {
-    // pluralization
+  it('should translate(string) using default locale', () => {
+    const translated = t('hello');
+    expect(translated).to.exist;
+    expect(translated).to.be.equal('Hello');
+  });
 
-    it('should be able to pluralize', () => {
-      expect(n).to.exist;
-      expect(n).to.be.a('function');
-      expect(n.name).to.be.equal('n');
-      expect(n).to.have.length(3);
-    });
+  it('should translate(object) using default locale', () => {
+    const translated = t('gender');
+    expect(translated).to.exist;
 
-    it('should pluralize using default locale', () => {
-      const pluralized = n('You have %s message', 0);
-      expect(pluralized).to.exist;
-      expect(pluralized).to.equal('You have 0 messages');
-    });
+    expect(translated.male).to.exist;
+    expect(translated.male).to.equal('Male');
+    expect(translated.male).to.be.equal(t('gender.male'));
 
-    it('should pluralize using default locale', () => {
-      const pluralized = n('You have %s message', 1);
-      expect(pluralized).to.exist;
-      expect(pluralized).to.equal('You have 1 message');
-    });
+    expect(translated.female).to.exist;
+    expect(translated.female).to.be.equal('Female');
+    expect(translated.female).to.be.equal(t('gender.female'));
+  });
 
-    it('should pluralize using default locale', () => {
-      const pluralized = n('You have %s message', 10);
-      expect(pluralized).to.exist;
-      expect(pluralized).to.equal('You have 10 messages');
-    });
+  it('should translate(string) using provided locale', () => {
+    const translated = t('hello', 'sw');
+    expect(translated).to.exist;
+    expect(translated).to.be.equal('Mambo');
+  });
 
-    it('should pluralize using specified locale', () => {
-      const pluralized = n('You have %s message', 'sw', 0);
-      expect(pluralized).to.exist;
-      expect(pluralized).to.equal('Una meseji 0');
-    });
+  it('should translate(object) using provided locale', () => {
+    const translated = t('gender', 'sw');
+    expect(translated).to.exist;
 
-    it('should pluralize using specified locale', () => {
-      const pluralized = n('You have %s message', 'sw', 1);
-      expect(pluralized).to.exist;
-      expect(pluralized).to.equal('Una meseji 1');
-    });
+    expect(translated.male).to.exist;
+    expect(translated.male).to.equal('Mme');
+    expect(translated.male).to.be.equal(t('gender.male', 'sw'));
 
-    it('should pluralize using specified locale', () => {
-      const pluralized = n('You have %s message', 'sw', 10);
-      expect(pluralized).to.exist;
-      expect(pluralized).to.equal('Una meseji 10');
-    });
+    expect(translated.female).to.exist;
+    expect(translated.female).to.be.equal('Mke');
+    expect(translated.female).to.be.equal(t('gender.female', 'sw'));
+  });
+
+  it('should parse and translate(string) using default locale', () => {
+    const translated = t('greeting', { name: 'John' });
+    expect(translated).to.exist;
+    expect(translated).to.be.equal('Hello John');
+  });
+
+  it('should parse and translate(string) using provided locale', () => {
+    const translated = t('greeting', 'sw', { name: 'John' });
+    expect(translated).to.exist;
+    expect(translated).to.be.equal('Mambo John');
+  });
+
+  it('should obtain phrase translations list', () => {
+    const translations = l('hello');
+    expect(translations).to.exist;
+    expect(translations).to.be.an('array');
+    expect(translations).to.have.length(2);
+    expect(translations).to.be.eql(['Hello', 'Mambo']);
+  });
+
+  it('should obtain phrase translations hash', () => {
+    const translations = h('hello');
+    expect(translations).to.exist;
+    expect(translations).to.be.an('array');
+    expect(translations).to.have.length(2);
+    expect(translations).to.be.eql([{ en: 'Hello' }, { sw: 'Mambo' }]);
+  });
+
+  // pluralization
+
+  it('should pluralize', () => {
+    expect(n).to.exist;
+    expect(n).to.be.a('function');
+    expect(n.name).to.be.equal('n');
+    expect(n).to.have.length(3);
+  });
+
+  it('should pluralize using default locale', () => {
+    const pluralized = n('You have %s message', 0);
+    expect(pluralized).to.exist;
+    expect(pluralized).to.equal('You have 0 messages');
+  });
+
+  it('should pluralize using default locale', () => {
+    const pluralized = n('You have %s message', 1);
+    expect(pluralized).to.exist;
+    expect(pluralized).to.equal('You have 1 message');
+  });
+
+  it('should pluralize using default locale', () => {
+    const pluralized = n('You have %s message', 10);
+    expect(pluralized).to.exist;
+    expect(pluralized).to.equal('You have 10 messages');
+  });
+
+  it('should pluralize using specified locale', () => {
+    const pluralized = n('You have %s message', 'sw', 0);
+    expect(pluralized).to.exist;
+    expect(pluralized).to.equal('Una meseji 0');
+  });
+
+  it('should pluralize using specified locale', () => {
+    const pluralized = n('You have %s message', 'sw', 1);
+    expect(pluralized).to.exist;
+    expect(pluralized).to.equal('Una meseji 1');
+  });
+
+  it('should pluralize using specified locale', () => {
+    const pluralized = n('You have %s message', 'sw', 10);
+    expect(pluralized).to.exist;
+    expect(pluralized).to.equal('Una meseji 10');
+  });
+
+  // catalog
+
+  it('should provide catalog', () => {
+    expect(catalog).to.exist;
+    expect(catalog).to.be.a('function');
+    expect(catalog.name).to.be.equal('catalog');
+    expect(catalog).to.have.length(1);
+  });
+
+  it.skip('should provide whole catalog', () => {
+    const locales = catalog();
+    expect(locales).to.exist.and.be.an('object');
+    expect(locales.en).to.exist.and.be.an('object');
+    expect(locales.sw).to.exist.and.be.an('object');
+  });
+
+  it('should provide specific locale catalog', () => {
+    const locales = catalog('en');
+    expect(locales).to.exist.and.be.an('object');
+  });
+
+  it('should provide specific locale catalog', () => {
+    const locales = catalog('sw');
+    expect(locales).to.exist.and.be.an('object');
   });
 
   after(() => {
     process.env.BASE_PATH = BASE_PATH;
+    process.env.I18N_LOCALES = I18N_LOCALES;
   });
 });

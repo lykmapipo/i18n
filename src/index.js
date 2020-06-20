@@ -131,8 +131,8 @@ export const withDefaults = (optns = {}) => {
  * @name configure
  * @function configure
  * @description i18n factory
- * @param {object} [optns] valid i18n options
- * @param {boolean} [optns.reset] reset i18n
+ * @param {object} [optns={}] valid i18n options
+ * @param {boolean} [optns.reset=false] reset i18n
  * @returns {object} i18n helpers
  * @see {@link https://github.com/mashpie/i18n-node#i18nconfigure}
  * @author lally elias <lallyelias87@gmail.com>
@@ -157,7 +157,7 @@ export const configure = (optns) => {
 
   // configure node i18n
   const isInitialized = isFunction(i18n.t);
-  const shouldReset = options.reset;
+  const shouldReset = optns && optns.reset;
   if (!isInitialized || shouldReset) {
     options.register = i18n;
     options.api = {
@@ -373,4 +373,38 @@ export const n = (phrase, locale, count) => {
 
   // return pluralized
   return pluralized;
+};
+
+/**
+ * @name catalog
+ * @function catalog
+ * @description Provide a whole transalation catalog of a given locale
+ * @param {string} [locale] locale to obtain catalog for.
+ * @returns {object} translation catalog
+ * @author lally elias <lallyelias87@mail.com>
+ * @license MIT
+ * @since 0.2.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * import { catalog } from '@lykmapipo/i18n';
+ *
+ * catalog();
+ * // => { en: { ... }, sw: { ... }, ... };
+ *
+ * catalog('en');
+ * // => { en: { ... } };
+ *
+ */
+export const catalog = (locale) => {
+  // ensure initialize
+  configure();
+
+  // obtain locales catalog
+  const localeCatalog = i18n.getCatalog(locale);
+
+  // return localeCatalog
+  return mergeObjects(localeCatalog);
 };
