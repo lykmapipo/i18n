@@ -12,7 +12,7 @@
 
 [i18n](https://github.com/mashpie/i18n-node) helpers.
 
-*Note: Make sure you have `locales` inside your base directory. [Check](https://github.com/lykmapipo/i18n/tree/master/test/locales)*
+*Note: Make sure you have `locales` inside your base directory. [Check](https://github.com/lykmapipo/i18n/tree/master/test/fixtures/locales)*
 
 ## Requirements
 
