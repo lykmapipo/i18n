@@ -2,11 +2,16 @@ import { keys } from 'lodash';
 import pkg from './package.json';
 
 const imports = [
+  'lodash/clone',
   'lodash/get',
   'lodash/filter',
   'lodash/first',
   'lodash/isEmpty',
   'lodash/isFunction',
+  'lodash/isNumber',
+  'lodash/isPlainObject',
+  'lodash/isString',
+  'lodash/trim',
 ];
 
 export default [

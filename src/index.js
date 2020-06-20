@@ -1,5 +1,10 @@
 import path from 'path';
+import clone from 'lodash/clone';
 import isFunction from 'lodash/isFunction';
+import isNumber from 'lodash/isNumber';
+import isPlainObject from 'lodash/isPlainObject';
+import isString from 'lodash/isString';
+import trim from 'lodash/trim';
 import { firstValue, mergeObjects, sortedUniq } from '@lykmapipo/common';
 import { getString, getStringSet } from '@lykmapipo/env';
 import I18N from 'i18n';
@@ -13,7 +18,7 @@ let i18n = {};
 /**
  * @function withEnv
  * @name withEnv
- * @description Grab defaults from environment variables.
+ * @description Grab defaults from environment variables
  * @returns {object} environment options
  * @author lally elias <lallyelias87@mail.com>
  * @license MIT
@@ -79,7 +84,7 @@ export const withEnv = () => {
 /**
  * @function withDefaults
  * @name withDefaults
- * @description Merge provided options with defaults.
+ * @description Merge provided options with defaults
  * @param {object} [optns={}] provided options
  * @returns {object} merged options
  * @author lally elias <lallyelias87@mail.com>
@@ -141,11 +146,8 @@ export const withDefaults = (optns = {}) => {
  *
  * const i18n = configure({ ... });
  *
- * i18n.__('hello'); // Hello
- * i18n.__('hello', 'sw'); // Mambo
- *
- * i18n.t('hello'); // Hello
- * i18n.t('hello', 'sw'); // Mambo
+ * i18n.t('hello'); // => Hello
+ * i18n.t('hello', 'sw'); // => Mambo
  */
 export const configure = (optns) => {
   // merge options
@@ -188,10 +190,187 @@ export const configure = (optns) => {
  * import { reset } from '@lykmapipo/i18n';
  *
  * reset();
- * //=> undefined
+ * // => undefined
  *
  */
 export const reset = () => {
   i18n = {};
   return i18n;
+};
+
+/**
+ * @name t
+ * @function t
+ * @description Translates a single phrase and adds it to locales if unknown
+ * @param {string} phrase localized phrase
+ * @param {string} [locale=en] locale to use in translation or default
+ * @param {object} [optns={}] data to use on parse and substitution
+ * @returns {string} translated parsed and substituted string
+ * @author lally elias <lallyelias87@gmail.com>
+ * @since  0.1.0
+ * @version 0.1.0
+ * @license MIT
+ * @public
+ * @static
+ * @example
+ *
+ * import { t } from '@lykmapipo/i18n';
+ *
+ * t('hello'); // => Hello
+ * t('hello', 'sw'); // => Mambo
+ * t('greeting', { name: 'John' }); // => Hello John
+ * t('greeting', 'sw', { name: 'John' }); // => Mambo John
+ *
+ */
+export const t = (phrase, locale, optns) => {
+  // ensure initialize
+  configure();
+
+  // obtain defaults
+  const { defaultLocale } = withDefaults();
+
+  // ensure params
+  const localPhrase = clone(phrase);
+  const localLocale = isString(locale)
+    ? clone(trim(locale) || defaultLocale)
+    : defaultLocale;
+  const options = isPlainObject(locale)
+    ? mergeObjects(locale)
+    : mergeObjects(optns);
+
+  // translate
+  const translated = i18n.t(
+    { phrase: localPhrase, locale: localLocale },
+    options
+  );
+
+  // return translated
+  return translated;
+};
+
+/**
+ * @name l
+ * @function l
+ * @description Provides list of translations for a given phrase in
+ * each language
+ * @param {string} phrase localized phrase
+ * @returns {string} translated parsed and substituted string
+ * @author lally elias <lallyelias87@gmail.com>
+ * @since  0.1.0
+ * @version 0.1.0
+ * @license MIT
+ * @public
+ * @static
+ * @example
+ *
+ * import { l } from '@lykmapipo/i18n';
+ *
+ * l('hello');
+ * // => [ 'Hello', 'Mambo' ]
+ *
+ */
+export const l = (phrase) => {
+  // ensure initialize
+  configure();
+
+  // ensure params
+  const localPhrase = clone(phrase);
+
+  // obtain translations
+  const translates = i18n.l(localPhrase);
+
+  // return translates
+  return translates;
+};
+
+/**
+ * @name h
+ * @function h
+ * @description Provides hashed list of translations for a given phrase in
+ * each language.
+ * @param {string} phrase localized phrase
+ * @returns {string} translated parsed and substituted string
+ * @author lally elias <lallyelias87@gmail.com>
+ * @since  0.1.0
+ * @version 0.1.0
+ * @license MIT
+ * @public
+ * @static
+ * @example
+ *
+ * import { h } from '@lykmapipo/i18n';
+ *
+ * h('hello');
+ * // => [ { en: 'Hello' }, { sw: 'Mambo'} ]
+ *
+ */
+export const h = (phrase) => {
+  // ensure initialize
+  configure();
+
+  // ensure params
+  const localPhrase = clone(phrase);
+
+  // obtain translations hash list
+  const translates = i18n.h(localPhrase);
+
+  // return translates
+  return translates;
+};
+
+/**
+ * @name n
+ * @function n
+ * @description Plurals translation of a single phrase
+ *
+ * Note: Singular and plural forms will get added to locales if unknown
+ *
+ *
+ * @param {string} phrase localized phrase
+ * @param {string} [locale=en] locale to use in translation or default
+ * @param {number} [count=0] count to use on parse and substitution
+ * @returns {string} translated parsed and substituted string based on last
+ * count parameter
+ * @author lally elias <lallyelias87@gmail.com>
+ * @since  0.1.0
+ * @version 0.1.0
+ * @license MIT
+ * @public
+ * @static
+ * @example
+ *
+ * import { n } from '@lykmapipo/i18n';
+ *
+ * n('You have %s message', 1); // You have 1 message
+ * n('You have %s message', 'sw', 1); // Una meseji 1
+ * n('You have %s message', 4); // You have 4 messages
+ * n('You have %s message', 'sw', 4); // Una meseji 4
+ *
+ */
+export const n = (phrase, locale, count) => {
+  // ensure initialize
+  configure();
+
+  // obtain defaults
+  const { defaultLocale } = withDefaults();
+
+  // ensure params
+  const localPhrase = clone(phrase);
+  const localLocal = isString(locale)
+    ? clone(trim(locale) || defaultLocale)
+    : defaultLocale;
+  const localCount = isNumber(locale) ? clone(locale) : clone(count || 0);
+
+  // pluralize
+  // see https://github.com/mashpie/i18n-node#pluralization
+  const options = {
+    singular: localPhrase,
+    plural: localPhrase,
+    locale: localLocal,
+    count: localCount,
+  };
+  const pluralized = i18n.n(options);
+
+  // return pluralized
+  return pluralized;
 };
