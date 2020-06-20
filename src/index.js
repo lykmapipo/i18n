@@ -1,12 +1,13 @@
 import path from 'path';
 import clone from 'lodash/clone';
+import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isNumber from 'lodash/isNumber';
 import isPlainObject from 'lodash/isPlainObject';
 import isString from 'lodash/isString';
 import trim from 'lodash/trim';
 import { firstValue, mergeObjects, sortedUniq } from '@lykmapipo/common';
-import { getString, getStringSet } from '@lykmapipo/env';
+import { getString, getStringSet, getObject } from '@lykmapipo/env';
 import I18N from 'i18n';
 
 // local scoped i18n register
@@ -75,10 +76,23 @@ export const withEnv = () => {
     true // fallback
   );
 
-  // TODO: staticCatalog
+  // grab staticCatalog
+  const staticCatalog = firstValue(
+    getObject('I18N_STATIC_CATALOG'), // node
+    getObject('STATIC_CATALOG'), // legacy
+    getObject('REACT_APP_I18N_STATIC_CATALOG'), // react
+    undefined // fallback
+  );
 
   // return
-  return { locales, defaultLocale, queryParameter, directory, objectNotation };
+  return mergeObjects({
+    locales,
+    defaultLocale,
+    queryParameter,
+    directory,
+    objectNotation,
+    staticCatalog,
+  });
 };
 
 /**
@@ -100,7 +114,6 @@ export const withEnv = () => {
  * // => { locales: ['en', ...], ... };
  */
 export const withDefaults = (optns = {}) => {
-  // TODO: staticCatalog
   // TODO: isNode vs isBrowser
 
   // grab defaults
@@ -110,6 +123,7 @@ export const withDefaults = (optns = {}) => {
     queryParameter,
     directory,
     objectNotation,
+    staticCatalog,
   } = mergeObjects(withEnv());
 
   // merge defaults
@@ -121,10 +135,18 @@ export const withDefaults = (optns = {}) => {
   queryParameter = firstValue(optns.queryParameter, queryParameter);
   objectNotation = firstValue(optns.objectNotation, objectNotation);
 
-  // TODO: staticCatalog
+  staticCatalog = mergeObjects(staticCatalog, optns.staticCatalog);
+  staticCatalog = isEmpty(staticCatalog) ? undefined : staticCatalog;
 
   // return options
-  return { locales, defaultLocale, queryParameter, directory, objectNotation };
+  return mergeObjects({
+    locales,
+    defaultLocale,
+    queryParameter,
+    directory,
+    objectNotation,
+    staticCatalog,
+  });
 };
 
 /**
@@ -152,8 +174,6 @@ export const withDefaults = (optns = {}) => {
 export const configure = (optns) => {
   // merge options
   const options = withDefaults(optns);
-
-  // TODO: staticCatalog
 
   // configure node i18n
   const isInitialized = isFunction(i18n.t);
