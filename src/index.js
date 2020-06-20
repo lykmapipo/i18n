@@ -10,11 +10,8 @@ import { firstValue, mergeObjects, sortedUniq } from '@lykmapipo/common';
 import { getString, getStringSet, getObject } from '@lykmapipo/env';
 import I18N from 'i18n';
 
-// local scoped i18n register
+// local scoped i18n registry
 let i18n = {};
-
-// TODO: grab staticCatalog from env(I18N_STATIC_CATALOGUE),
-// and merge with provided
 
 /**
  * @function withEnv
@@ -361,10 +358,10 @@ export const h = (phrase) => {
  *
  * import { n } from '@lykmapipo/i18n';
  *
- * n('You have %s message', 1); // You have 1 message
- * n('You have %s message', 'sw', 1); // Una meseji 1
- * n('You have %s message', 4); // You have 4 messages
- * n('You have %s message', 'sw', 4); // Una meseji 4
+ * n('You have %s message', 1); // => You have 1 message
+ * n('You have %s message', 'sw', 1); // => Una meseji 1
+ * n('You have %s message', 4); // => You have 4 messages
+ * n('You have %s message', 'sw', 4); // => Una meseji 4
  *
  */
 export const n = (phrase, locale, count) => {
