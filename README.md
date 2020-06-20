@@ -16,8 +16,8 @@
 
 ## Requirements
 
-- [NodeJS v13+](https://nodejs.org)
-- [Npm v6.12+](https://www.npmjs.com/)
+- [NodeJS v14.1+](https://nodejs.org)
+- [Npm v6.14+](https://www.npmjs.com/)
 
 ## Installation
 
