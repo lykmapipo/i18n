@@ -1,3 +1,9 @@
+#### 0.2.1 (2020-06-20)
+
+##### Documentation Changes
+
+* **readme:**  update sample locales ref ([eb8fcd1c](https://github.com/lykmapipo/i18n/commit/eb8fcd1ce473ff72eac59e38c23f6d167dbba843))
+
 #### 0.2.0 (2020-06-20)
 
 ##### Documentation Changes
