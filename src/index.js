@@ -136,7 +136,7 @@ export const withDefaults = (optns = {}) => {
  * @returns {object} i18n helpers
  * @see {@link https://github.com/mashpie/i18n-node#i18nconfigure}
  * @author lally elias <lallyelias87@gmail.com>
- * @since  0.1.0
+ * @since  0.2.0
  * @version 0.1.0
  * @license MIT
  * @public
@@ -206,12 +206,12 @@ export const reset = () => {
  * @param {string} [locale=en] locale to use in translation or default
  * @param {object} [optns={}] data to use on parse and substitution
  * @returns {string} translated parsed and substituted string
- * @author lally elias <lallyelias87@gmail.com>
- * @since  0.1.0
- * @version 0.1.0
+ * @author lally elias <lallyelias87@mail.com>
  * @license MIT
- * @public
+ * @since 0.2.0
+ * @version 0.1.0
  * @static
+ * @public
  * @example
  *
  * import { t } from '@lykmapipo/i18n';
@@ -255,12 +255,12 @@ export const t = (phrase, locale, optns) => {
  * each language
  * @param {string} phrase localized phrase
  * @returns {string} translated parsed and substituted string
- * @author lally elias <lallyelias87@gmail.com>
- * @since  0.1.0
- * @version 0.1.0
+ * @author lally elias <lallyelias87@mail.com>
  * @license MIT
- * @public
+ * @since 0.2.0
+ * @version 0.1.0
  * @static
+ * @public
  * @example
  *
  * import { l } from '@lykmapipo/i18n';
@@ -290,12 +290,12 @@ export const l = (phrase) => {
  * each language.
  * @param {string} phrase localized phrase
  * @returns {string} translated parsed and substituted string
- * @author lally elias <lallyelias87@gmail.com>
- * @since  0.1.0
- * @version 0.1.0
+ * @author lally elias <lallyelias87@mail.com>
  * @license MIT
- * @public
+ * @since 0.2.0
+ * @version 0.1.0
  * @static
+ * @public
  * @example
  *
  * import { h } from '@lykmapipo/i18n';
@@ -331,12 +331,12 @@ export const h = (phrase) => {
  * @param {number} [count=0] count to use on parse and substitution
  * @returns {string} translated parsed and substituted string based on last
  * count parameter
- * @author lally elias <lallyelias87@gmail.com>
- * @since  0.1.0
- * @version 0.1.0
+ * @author lally elias <lallyelias87@mail.com>
  * @license MIT
- * @public
+ * @since 0.2.0
+ * @version 0.1.0
  * @static
+ * @public
  * @example
  *
  * import { n } from '@lykmapipo/i18n';
