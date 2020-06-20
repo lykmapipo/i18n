@@ -1,7 +1,14 @@
 # i18n
 
 [![Build Status](https://travis-ci.org/lykmapipo/i18n.svg?branch=master)](https://travis-ci.org/lykmapipo/i18n)
-[![Dependencies Status](https://david-dm.org/lykmapipo/i18n/status.svg?style=flat-square)](https://david-dm.org/lykmapipo/i18n)
+[![Dependencies Status](https://david-dm.org/lykmapipo/i18n.svg)](https://david-dm.org/lykmapipo/i18n)
+[![Coverage Status](https://coveralls.io/repos/github/lykmapipo/i18n/badge.svg?branch=master)](https://coveralls.io/github/lykmapipo/i18n?branch=master)
+[![GitHub License](https://img.shields.io/github/license/lykmapipo/i18n)](https://github.com/lykmapipo/i18n/blob/develop/LICENSE)
+
+[![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![npm version](https://img.shields.io/npm/v/@lykmapipo/i18n)](https://www.npmjs.com/package/@lykmapipo/i18n)
 
 [i18n](https://github.com/mashpie/i18n-node) helpers.
 
@@ -9,20 +16,19 @@
 
 ## Requirements
 
-- [NodeJS v8.11.1+](https://nodejs.org)
-- [npm v5.6.0+](https://www.npmjs.com/)
-- [i18n-node v0.8.3+](https://github.com/mashpie/i18n-node)
+- [NodeJS v13+](https://nodejs.org)
+- [Npm v6.12+](https://www.npmjs.com/)
 
 ## Installation
 
 ```sh
-npm install --save @lykmapipo/i18n
+npm install @lykmapipo/i18n --save
 ```
 
 ## Usage
 
 ```js
-const { __ } = require('@lykmapipo/i18n');
+import { __ } from '@lykmapipo/i18n';
 
 // default locale
 __('hello'); // Hello
@@ -35,6 +41,14 @@ __('hello', 'sw', { name: 'John' }); // Mambo John
 
 ...
 
+```
+## Environment
+```js
+I18N_DEFAULT_LOCALE=en
+I18N_LOCALES=en,sw
+I18N_QUERY_PARAMETER=lang
+I18N_DIRECTORY=./locales
+I18N_OBJECT_NOTATION=true
 ```
 
 ## Helpers
@@ -65,14 +79,20 @@ __n('You have %s message', 'sw', 10);
 
 ```
 
-## Test
+## Testing
 
 - Clone this repository
 
-- Install all dependencies
+- Install all development dependencies
 
 ```sh
 npm install
+```
+
+- Run example
+
+```sh
+npm run dev
 ```
 
 - Then run test
@@ -85,11 +105,11 @@ npm test
 
 It will be nice, if you open an issue first so that we can know what is going on, then, fork this repo and push in your ideas. Do not forget to add a bit of test(s) of what value you adding.
 
-## Licence
+## License
 
 The MIT License (MIT)
 
-Copyright (c) 2018 lykmapipo & Contributors
+Copyright (c) lykmapipo & Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
