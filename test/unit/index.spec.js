@@ -1,11 +1,11 @@
 import { expect } from '@lykmapipo/test-helpers';
 
-import { withEnv, withDefaults, configure } from '../../src';
+import { withEnv, withDefaults, configure, reset } from '../../src';
 
 describe('i18n', () => {
   const { BASE_PATH } = process.env;
 
-  before(() => {
+  beforeEach(() => {
     process.env.BASE_PATH = `${__dirname}'/../fixtures`;
   });
 
@@ -49,6 +49,13 @@ describe('i18n', () => {
     expect(configure).to.be.a('function');
     expect(configure.name).to.be.equal('configure');
     expect(configure).to.have.length(1);
+  });
+
+  it('should reset internals', () => {
+    expect(reset).to.exist;
+    expect(reset).to.be.a('function');
+    expect(reset.name).to.be.equal('reset');
+    expect(reset).to.have.length(0);
   });
 
   after(() => {

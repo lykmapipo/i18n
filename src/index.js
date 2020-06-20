@@ -1,12 +1,11 @@
 import path from 'path';
-import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import { firstValue, mergeObjects, sortedUniq } from '@lykmapipo/common';
 import { getString, getStringSet } from '@lykmapipo/env';
 import I18N from 'i18n';
 
 // local scoped i18n register
-const i18n = {};
+let i18n = {};
 
 // TODO: grab staticCatalog from env(I18N_STATIC_CATALOGUE),
 // and merge with provided
@@ -155,7 +154,7 @@ export const configure = (optns) => {
   // TODO: staticCatalog
 
   // configure node i18n
-  const isInitialized = isFunction(get(i18n.t));
+  const isInitialized = isFunction(i18n.t);
   const shouldReset = options.reset;
   if (!isInitialized || shouldReset) {
     options.register = i18n;
@@ -170,5 +169,29 @@ export const configure = (optns) => {
   }
 
   // export configured
+  return i18n;
+};
+
+/**
+ * @function reset
+ * @name reset
+ * @description Reset i18n internals
+ * @returns {object} i18n helpers
+ * @author lally elias <lallyelias87@mail.com>
+ * @license MIT
+ * @since 0.2.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * import { reset } from '@lykmapipo/i18n';
+ *
+ * reset();
+ * //=> undefined
+ *
+ */
+export const reset = () => {
+  i18n = {};
   return i18n;
 };
