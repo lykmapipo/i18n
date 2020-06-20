@@ -21,9 +21,24 @@ describe('i18n', () => {
 
   it('should merge provided options with defaults', () => {
     expect(withDefaults).to.exist.and.be.a('function');
-    const options = withDefaults();
+    let options = withDefaults();
     expect(options.locales).to.exist;
     expect(options.defaultLocale).to.exist;
+    expect(options.queryParameter).to.exist;
+    expect(options.directory).to.exist;
+    expect(options.objectNotation).to.exist;
+
+    options = withDefaults({ locales: ['sw'] });
+    expect(options.locales).to.exist.and.include('sw');
+    expect(options.defaultLocale).to.exist;
+    expect(options.queryParameter).to.exist;
+    expect(options.directory).to.exist;
+    expect(options.objectNotation).to.exist;
+
+    options = withDefaults({ defaultLocale: 'sw', locales: ['de'] });
+    expect(options.locales).to.exist.and.include('sw');
+    expect(options.locales).to.exist.and.include('de');
+    expect(options.defaultLocale).to.exist.and.be.equal('sw');
     expect(options.queryParameter).to.exist;
     expect(options.directory).to.exist;
     expect(options.objectNotation).to.exist;

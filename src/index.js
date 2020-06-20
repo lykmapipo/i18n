@@ -91,7 +91,6 @@ export const withEnv = () => {
  */
 export const withDefaults = (optns = {}) => {
   // TODO: staticCatalog
-  // TODO: withEnv I18N_DEFAULT_LOCALE
   // TODO: isNode vs isBrowser
 
   // grab defaults
