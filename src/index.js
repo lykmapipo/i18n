@@ -144,6 +144,9 @@ export const withDefaults = (optns = {}) => {
  *
  * i18n.__('hello'); // Hello
  * i18n.__('hello', 'sw'); // Mambo
+ *
+ * i18n.t('hello'); // Hello
+ * i18n.t('hello', 'sw'); // Mambo
  */
 export const configure = (optns) => {
   // merge options
@@ -152,11 +155,18 @@ export const configure = (optns) => {
   // TODO: staticCatalog
 
   // configure node i18n
-  const isInitialized = isFunction(get(i18n, '__'));
+  const isInitialized = isFunction(get(i18n.t));
   const shouldReset = options.reset;
   if (!isInitialized || shouldReset) {
     options.register = i18n;
-    I18N.configure({ ...options, register: i18n });
+    options.api = {
+      __: 't',
+      __n: 'n',
+      __l: 'l',
+      __h: 'h',
+      __mf: 'mf',
+    };
+    I18N.configure(options);
   }
 
   // export configured
