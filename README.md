@@ -28,16 +28,16 @@ npm install @lykmapipo/i18n --save
 ## Usage
 
 ```js
-import { __ } from '@lykmapipo/i18n';
+import { t } from '@lykmapipo/i18n';
 
 // default locale
-__('hello'); // Hello
-__('hello', { name: 'John' }); // Hello John
+t('hello'); // => Hello
+t('hello', { name: 'John' }); // => Hello John
 
 
 // passing specific locale
-__('hello', 'sw'); // Mambo
-__('hello', 'sw', { name: 'John' }); // Mambo John
+t('hello', 'sw'); // => Mambo
+t('hello', 'sw', { name: 'John' }); // => Mambo John
 
 ...
 
@@ -53,29 +53,29 @@ I18N_OBJECT_NOTATION=true
 
 ## Helpers
 
-- `__(phrase:String, [locale:String], [options:Object])`: Translates a single 
+- `t(phrase:String, [locale:String], [options:Object])`: Translates a single 
 phrase and adds it to locales if unknown. It returns translated parsed and 
 substituted string.
 
 Example:
 ```js
-__('hello');
-__('hello', { name: 'John' });
+t('hello');
+t('hello', { name: 'John' });
 
-__('hello', 'sw');
-__('hello', 'sw', { name: 'John' });
+t('hello', 'sw');
+t('hello', 'sw', { name: 'John' });
 
 ```
 
-- `__n(phrase:String, [locale:String|count:Number], count:Number)`: Plurals translation of a single phrase. Singular and plural forms will get added to locales if unknown. Returns translated parsed and substituted string based on last count parameter.
+- `n(phrase:String, [locale:String|count:Number], count:Number)`: Plurals translation of a single phrase. Singular and plural forms will get added to locales if unknown. Returns translated parsed and substituted string based on last count parameter.
 
 Example:
 ```js
-__n('You have %s message', 1);
-__n('You have %s message', 10);
+n('You have %s message', 1);
+n('You have %s message', 10);
 
-__n('You have %s message', 'sw', 1);
-__n('You have %s message', 'sw', 10);
+n('You have %s message', 'sw', 1);
+n('You have %s message', 'sw', 10);
 
 ```
 
