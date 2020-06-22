@@ -1,3 +1,13 @@
+#### 0.2.2 (2020-06-22)
+
+##### Chores
+
+* **deps:**  force latest version & audit fix ([a20fc4ac](https://github.com/lykmapipo/i18n/commit/a20fc4ac77388886f16cca920d22159c3277d77a))
+
+##### Code Style Changes
+
+*  improve jsdocs ([62f3db45](https://github.com/lykmapipo/i18n/commit/62f3db45486cff20c352864f75e00a6d4011b60c))
+
 #### 0.2.1 (2020-06-20)
 
 ##### Documentation Changes
