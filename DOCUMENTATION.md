@@ -1,6 +1,6 @@
 #### withEnv() 
 
-Grab defaults from environment variables
+Grab default options from environment variables
 
 
 
@@ -35,6 +35,7 @@ Merge provided options with defaults
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | optns&#x3D;{} | `object`  | provided options | *Optional* |
+| optns.staticCatalog&#x3D;undefined | `object`  | static translations object | *Optional* |
 
 
 
@@ -69,6 +70,7 @@ i18n factory
 | ---- | ---- | ----------- | -------- |
 | optns&#x3D;{} | `object`  | valid i18n options | *Optional* |
 | optns.reset&#x3D;false | `boolean`  | reset i18n | *Optional* |
+| optns.staticCatalog&#x3D;undefined | `object`  | static translations object | *Optional* |
 
 
 
@@ -79,7 +81,8 @@ i18n factory
 
 import { configure } from '@lykmapipo/i18n';
 
-const i18n = configure({ ... });
+const optns = { .. };
+const i18n = configure(optns);
 
 i18n.t('hello'); // => Hello
 i18n.t('hello', 'sw'); // => Mambo
@@ -229,7 +232,7 @@ h('hello');
 #### n(phrase[, locale&#x3D;en, count&#x3D;0]) 
 
 Plurals translation of a single phrase 
-Note: Singular and plural forms will get added to locales if unknown
+`Note: Singular and plural forms will get added to locales if unknown`
 
 
 
@@ -276,7 +279,7 @@ Provide a whole transalation catalog of a given locale
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| locale | `string`  | locale to obtain catalog for. | *Optional* |
+| locale | `string`  | locale to obtain catalog for | *Optional* |
 
 
 
@@ -291,7 +294,7 @@ catalog();
 // => { en: { ... }, sw: { ... }, ... };
 
 catalog('en');
-// => { en: { ... } };
+// => { ... };
 ```
 
 
