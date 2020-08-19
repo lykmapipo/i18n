@@ -1,6 +1,6 @@
 {
   "name": "@lykmapipo/i18n",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Re-usable helpers for mongoose connection",
   "main": "lib/index.js",
   "module": "es/index.js",
