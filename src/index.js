@@ -211,7 +211,6 @@ export const configure = (optns) => {
  *
  * reset();
  * // => undefined
- *
  */
 export const reset = () => {
   i18n = {};
@@ -240,7 +239,6 @@ export const reset = () => {
  * t('hello', 'sw'); // => Mambo
  * t('greeting', { name: 'John' }); // => Hello John
  * t('greeting', 'sw', { name: 'John' }); // => Mambo John
- *
  */
 export const t = (phrase, locale, optns) => {
   // ensure initialize
@@ -287,7 +285,6 @@ export const t = (phrase, locale, optns) => {
  *
  * l('hello');
  * // => [ 'Hello', 'Mambo' ]
- *
  */
 export const l = (phrase) => {
   // ensure initialize
@@ -322,7 +319,6 @@ export const l = (phrase) => {
  *
  * h('hello');
  * // => [ { en: 'Hello' }, { sw: 'Mambo'} ]
- *
  */
 export const h = (phrase) => {
   // ensure initialize
@@ -344,8 +340,6 @@ export const h = (phrase) => {
  * @description Plurals translation of a single phrase
  *
  * `Note: Singular and plural forms will get added to locales if unknown`
- *
- *
  * @param {string} phrase localized phrase
  * @param {string} [locale=en] locale to use in translation or default
  * @param {number} [count=0] count to use on parse and substitution
@@ -365,7 +359,6 @@ export const h = (phrase) => {
  * n('You have %s message', 'sw', 1); // => Una meseji 1
  * n('You have %s message', 4); // => You have 4 messages
  * n('You have %s message', 'sw', 4); // => Una meseji 4
- *
  */
 export const n = (phrase, locale, count) => {
   // ensure initialize
@@ -416,7 +409,6 @@ export const n = (phrase, locale, count) => {
  *
  * catalog('en');
  * // => { ... };
- *
  */
 export const catalog = (locale) => {
   // ensure initialize
