@@ -1,6 +1,6 @@
 # i18n
 
-[![Build Status](https://travis-ci.com/lykmapipo/i18n.svg?branch=master)](https://travis-ci.com/lykmapipo/i18n)
+[![Build Status](https://app.travis-ci.com/lykmapipo/i18n.svg?branch=master)](https://app.travis-ci.com/lykmapipo/i18n)
 [![Dependencies Status](https://david-dm.org/lykmapipo/i18n.svg)](https://david-dm.org/lykmapipo/i18n)
 [![Coverage Status](https://coveralls.io/repos/github/lykmapipo/i18n/badge.svg?branch=master)](https://coveralls.io/github/lykmapipo/i18n?branch=master)
 [![GitHub License](https://img.shields.io/github/license/lykmapipo/i18n)](https://github.com/lykmapipo/i18n/blob/develop/LICENSE)
